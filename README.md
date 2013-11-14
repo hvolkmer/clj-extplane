@@ -36,17 +36,19 @@ The buttons or keys are symbols referencing the names in [XPLMUtilities](http://
     (press-down :joy_flapsdn)
     (release :joy_flapsdn)
 
-Or you can just use the convienence funtion "toggle":
+For keys you should use the function `toggle`:
 
     (toggle :key_forward)
 
 ### Setting the update interval
 
+The update interval accepts a integer which resembles the update frequency in Hz (e.g. 30 -> 30 Hz -> 30 Updates per second).
+
     (set-update-interval 30)
 
 ## Internals
 
-It makes use of the fantastic [instaparse](https://github.com/Engelberg/instaparse) and [core.match](https://github.com/clojure/core.match) libraries.
+It makes use of the fantastic [instaparse](https://github.com/Engelberg/instaparse) and [core.match](https://github.com/clojure/core.match) libraries. The TCP socket handling is inspired by [a simple Clojure IRC Client](http://nakkaya.com/2010/02/10/a-simple-clojure-irc-client/).
 
 ## Getting ExtPlane to compile on OS X
 
@@ -61,6 +63,8 @@ This howto assumes you have the XCode 5.0 and the Xcode command line tools insta
     - Change `x86` to `x86_64` in the `CONFIG` line for macx
 5. run `qmake`
 6. run `make`
+
+To use the plugin (the `.xpl` files located in the `binaries` directory), put it in the X-Plane plugin folder.
 
 ## License
 
