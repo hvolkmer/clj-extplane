@@ -54,6 +54,9 @@ The update interval accepts a integer which resembles the update frequency in Hz
 
 It makes use of the fantastic [instaparse](https://github.com/Engelberg/instaparse) and [core.match](https://github.com/clojure/core.match) libraries. The TCP socket handling is inspired by [a simple Clojure IRC Client](http://nakkaya.com/2010/02/10/a-simple-clojure-irc-client/).
 
+This library is tested on each commit and this is the result: [![Build Status](https://secure.travis-ci.org/hvolkmer/clj-extplane.png)](http://travis-ci.org/hvolkmer/clj-extplane)
+
+
 ## Getting ExtPlane to compile on OS X
 
 This howto assumes you have the XCode 5.0 and the Xcode command line tools installed. It also assumes you use homebrew.
