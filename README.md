@@ -6,28 +6,32 @@ A small Clojure library designed to interface with [ExtPlane](https://github.com
 
 You need the following software already working to use clj-extplane
 
-- [X-Plane](www.x-plane.com/) - The flight simulator
+- [X-Plane](http://www.x-plane.com/) - The flight simulator
 - [ExtPlane](https://github.com/vranki/ExtPlane) - TCP interface to X-Plane
 
 If you run X-Plane and you can connect to `localhost:51000` (e.g. using netcat), you're in good shape. ExtPlane can be tricky to install on Mac OS X. See below for some hints.
 
 ### Setting values
 
-To get started fire up x-plane and make sure the ExtPlane plugin is running. Then open a REPL and set some data:
+To get started fire up X-Plane and make sure the ExtPlane plugin is running. Then open a REPL and set some data:
 
     (def xplane-conn (connect xplane))
     (set-dataref xplane-conn "sim/cockpit/radios/nav2_freq_hz" 11500)
 
 ### Getting values
 
-To get values (and do s.th. with them) you have to define handler functions that gets called, if one data-ref changes:
+To get values (and do s.th. with them) you have to define handler functions that get called, if a data-ref changes:
 
-	(subscribe-data-ref "sim/cockpit/radios/nav1_freq_hz")
+    (subscribe-data-ref "sim/cockpit/radios/nav1_freq_hz")
     (defn handle-nav1-freq-change [freq]
-		(println freq))
-	(add-dataref-handler! "sim/cockpit/radios/nav1_freq_hz" handle-nav1-freq-change)
+       (println freq))
+    (add-dataref-handler! "sim/cockpit/radios/nav1_freq_hz" handle-nav1-freq-change)
 
 Now go into X-Plane and turn the NAV 1 knob...
+
+If you don't want to receive update any more, you can remove the handler like this:
+
+     (remove-dataref-handler! "sim/cockpit/radios/nav1_freq_hz")
 
 ### Pressing buttons or command keys
 
