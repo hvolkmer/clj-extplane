@@ -22,7 +22,7 @@ To get started fire up X-Plane and make sure the ExtPlane plugin is running. The
 
 To get values (and do s.th. with them) you have to define handler functions that get called, if a data-ref changes:
 
-    (subscribe-data-ref "sim/cockpit/radios/nav1_freq_hz")
+    (subscribe-dataref xplane-conn "sim/cockpit/radios/nav1_freq_hz")
     (defn handle-nav1-freq-change [freq]
        (println freq))
     (add-dataref-handler! "sim/cockpit/radios/nav1_freq_hz" handle-nav1-freq-change)
@@ -33,22 +33,24 @@ If you don't want to receive update any more, you can remove the handler like th
 
      (remove-dataref-handler! "sim/cockpit/radios/nav1_freq_hz")
 
+To find out what you can get, set and subscribe to check out the [Dataref reference documentation](http://www.xsquawkbox.net/xpsdk/docs/DataRefs.html).
+
 ### Pressing buttons or command keys
 
 The buttons or keys are symbols referencing the names in [XPLMUtilities](http://www.xsquawkbox.net/xpsdk/mediawiki/XPLMUtilities) (without the leading `xplm`).
 
-    (press-down :joy_flapsdn)
-    (release :joy_flapsdn)
+    (press-down xplane-conn :joy_flapsdn)
+    (release xplane-conn :joy_flapsdn)
 
 For keys you should use the function `toggle`:
 
-    (toggle :key_forward)
+    (toggle xplane-conn :key_flapsdn)
 
 ### Setting the update interval
 
 The update interval accepts a integer which resembles the update frequency in Hz (e.g. 30 -> 30 Hz -> 30 Updates per second).
 
-    (set-update-interval 30)
+    (set-update-interval xplane-conn 30)
 
 ## Internals
 
