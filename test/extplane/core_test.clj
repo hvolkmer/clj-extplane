@@ -81,6 +81,11 @@
     (ref-handling-wrapper "heading" "uf heading 2.23")
     (is (= 2.23 (@test-ref :test)))))
 
+(deftest test-float-with-int-ref
+  (testing "float ref with int "
+    (ref-handling-wrapper "heading" "uf heading 1")
+    (is (= 1 (@test-ref :test)))))
+
 (deftest test-integer-array-ref
   (testing "integer array ref"
     (ref-handling-wrapper "N1_percent" "uia N1_percent [99,97]")

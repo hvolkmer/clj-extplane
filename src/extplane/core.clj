@@ -37,7 +37,7 @@ integer_array = <'['> integer (<','> integer)* <']'>
 value = integer | float
 dataref_name = #'[a-zA-Z/_0-9]+'
 integer = '-'? #'[0-9]+'
-float =  #'-?\\d+' '.' #'\\d+'
+float =  #'-?\\d+' '.'? #'\\d+'?
 base64data = #'^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$'
 version = <'EXTPLANE'> <' '> integer
 type = type_integer_array | type_integer | type_float | type_double | type_float_array | type_data
