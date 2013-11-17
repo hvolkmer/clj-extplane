@@ -103,6 +103,12 @@ type_data = 'ub'
 (defn release [conn button]
   (write conn (str "rel " (mappings/get-button-mapping button))))
 
+(defn joy-toggle
+  "This toggles a joystick switch. It's basically the same as toggle for keys."
+  [conn name]
+  (press-down conn name)
+  (release conn name))
+
 (defn toggle [conn key]
   (write conn (str "key " (mappings/get-key-mapping key))))
 

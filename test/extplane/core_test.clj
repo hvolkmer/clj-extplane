@@ -55,6 +55,14 @@
   (testing "release"
     (is (= "rel 81\r\n" (conn-test-wrapper release :joy_TOGA)))))
 
+(deftest test-toggle-button
+  (testing "toggle button"
+    (is (= "but \r\n" (conn-test-wrapper press-down :unknown)))))
+
+(deftest test-release
+  (testing "release"
+    (is (= "but 81\r\nrel 81\r\n" (conn-test-wrapper joy-toggle :joy_TOGA)))))
+
 (deftest test-toggle
   (testing "toggle"
     (is (= "key 0\r\n" (conn-test-wrapper toggle :key_pause)))))
