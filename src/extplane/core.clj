@@ -81,13 +81,20 @@ type_data = 'ub'
         (parse-input msg)))))
 
 ;;; This is the actual external API
-(defn subscribe-dataref [conn refname]
+(defn subscribe-dataref
+  "Subscribes to an X-plane dataref. Use add-dataref-handler! to handle the changed values."
+  [conn refname]
   (write conn (str "sub " refname)))
 
-(defn unsubscribe-dataref [conn refname]
+(defn unsubscribe-dataref
+  "Unsubscribes from an X-plane dataref. Does not affect your dataref-handlers/"
+  [conn refname]
   (write conn (str "unsub " refname)))
 
-(defn set-update-interval [conn hz]
+(defn set-update-interval
+  "Sets the update interval. The higher the frequency the more recent values you will get.
+   Higher frequencies also mean more CPU load. So be careful. Extplane default is 30 Hz."
+  [conn hz]
   (write conn (str "extplane-set update_interval " (float(/ 1 hz)))))
 
 (defn press-down [conn button]
