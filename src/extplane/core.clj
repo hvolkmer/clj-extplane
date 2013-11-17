@@ -96,8 +96,9 @@ type_data = 'ub'
 (defn set-dataref [conn refname value]
   ;; It is only possible to write to a data-ref if it is subscribed. We don't keep track
   ;; of subscriptions so we just issue a subscription before writing
-  (subscribe-dataref conn refname)
-  (write conn (str "set " refname " " value)))
+  (let [serialized-value (clojure.string/join "," (clojure.string/split (str value) #"\s"))]
+    (subscribe-dataref conn refname)
+    (write conn (str "set " refname " " serialized-value))))
 
 (defn disconnect [conn]
   (write conn "disconnect"))

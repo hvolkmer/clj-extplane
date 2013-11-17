@@ -67,6 +67,14 @@
   (testing "set-dataref"
     (is (= "sub some/dataref\r\nset some/dataref 100\r\n" (conn-test-wrapper set-dataref "some/dataref" 100)))))
 
+(deftest test-set-int-array-dataref
+  (testing "setting a int array ref"
+    (is (= "sub some/dataref\r\nset some/dataref [100,100,100]\r\n" (conn-test-wrapper set-dataref "some/dataref" [100,100,100])))))
+
+(deftest test-set-float-array-dataref
+  (testing "setting a float array ref"
+    (is (= "sub some/dataref\r\nset some/dataref [100.22,100.23,100.24]\r\n" (conn-test-wrapper set-dataref "some/dataref" [100.22,100.23,100.24])))))
+
 (deftest test-connect-disconnect
   (testing "disconnect"
     (is (= nil (conn-handler (fake-in-conn "EXTPLANE 1"))))))
