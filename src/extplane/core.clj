@@ -60,6 +60,12 @@ type_data = 'ub'
     (doto (Thread. #(conn-handler conn)) (.start))
     conn))
 
+(defn disconnect [conn]
+  (write conn "disconnect"))
+
+(defn connected? [conn]
+  (not (@conn :exit)))
+
 (defn- write [conn msg]
   (doto (:out @conn)
     (.println (str msg "\r"))
@@ -99,9 +105,6 @@ type_data = 'ub'
   (let [serialized-value (clojure.string/join "," (clojure.string/split (str value) #"\s"))]
     (subscribe-dataref conn refname)
     (write conn (str "set " refname " " serialized-value))))
-
-(defn disconnect [conn]
-  (write conn "disconnect"))
 
 (defn add-dataref-handler!
   "Adds a handler function for a data ref. The handler function will get called if
