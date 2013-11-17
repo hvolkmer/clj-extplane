@@ -60,16 +60,16 @@ type_data = 'ub'
     (doto (Thread. #(conn-handler conn)) (.start))
     conn))
 
+(defn- write [conn msg]
+  (doto (:out @conn)
+    (.println (str msg "\r"))
+    (.flush)))
+
 (defn disconnect [conn]
   (write conn "disconnect"))
 
 (defn connected? [conn]
   (not (@conn :exit)))
-
-(defn- write [conn msg]
-  (doto (:out @conn)
-    (.println (str msg "\r"))
-    (.flush)))
 
 (defn conn-handler [conn]
   (while (nil? (:exit @conn))
